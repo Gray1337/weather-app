@@ -1,6 +1,6 @@
 import {useState,useEffect, useCallback, useMemo} from 'react'
-import sunriseAndSunsetData from './sunrise-sunset.json'
-import { findLocation } from "./utils";
+import sunriseAndSunsetData from '../common/sunrise-sunset.json'
+import { findLocation } from "../common/utils";
 
 const fetchCurrentWeather = (local) =>{
   return fetch(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-015A44DA-F3CC-41AB-AF5C-13D9AECB6EB9&locationName=${local}`)
@@ -59,8 +59,8 @@ const getMoment =(locationName)=>{
   }).format(now).replace(/\//g,'-')
   const date = location.time.find( time => time.dataTime === nowDate )
 
-  const sunriseStamp = new Date(`${date.dataTime} ${date.sunrise}`).getTime()
-  const sunsetStamp = new Date(`${date.dataTime} ${date.sunset}`).getTime()
+  const sunriseStamp = new Date(`${location.dataTime} ${location.sunrise}`).getTime()
+  const sunsetStamp = new Date(`${location.dataTime} ${location.sunset}`).getTime()
   const nowStamp = now.getTime()
 
   return sunriseStamp <= nowStamp && nowStamp <= sunsetStamp ? 'day' : 'night'

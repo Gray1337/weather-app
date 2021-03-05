@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react'
 import styled from '@emotion/styled'
 import WeatherCard from './WeatherCard'
 import { ThemeProvider } from "@emotion/react";
-import useWeatherApi from "./useWeatherApi";
+import useWeatherApi from "./customHook/useWeatherApi";
 import WeatherSetting from "./WeatherSetting";
-import { findLocation } from "./utils";
+import { findLocation } from "../components/common/utils";
 
 const theme = {
   light: {
